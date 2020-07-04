@@ -55,6 +55,13 @@ public class AdvObject {
         this.alias = alias;
     }
 
+    public AdvObject(int id, String name, String description, String[] alias) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.alias = new HashSet<>(Arrays.asList(alias));
+    }
+
     public String getName() {
         return name;
     }

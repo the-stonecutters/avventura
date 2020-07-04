@@ -27,6 +27,12 @@ public class Command {
         this.name = name;
     }
 
+    public Command(CommandType type, String name, String[] alias) {
+        this.type = type;
+        this.name = name;
+        this.alias = new HashSet<>(Arrays.asList(alias));
+    }
+
     public Command(CommandType type, String name, Set<String> alias) {
         this.type = type;
         this.name = name;

@@ -6,6 +6,7 @@
 package org.stonecutters.adventure;
 
 import org.stonecutters.adventure.games.FireHouseGame;
+import org.stonecutters.adventure.games.WeirdCastel.WeirdCastel;
 import org.stonecutters.adventure.parser.Parser;
 import org.stonecutters.adventure.parser.ParserOutput;
 import org.stonecutters.adventure.type.CommandType;
@@ -56,7 +57,7 @@ public class Engine {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Engine engine = new Engine(new FireHouseGame());
+        Engine engine = new Engine(new WeirdCastel());
         engine.run();
     }
 

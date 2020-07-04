@@ -34,7 +34,7 @@ public class FireHouseGame extends GameDescription {
     @Override
     public void init() throws Exception {
         //Commands
-        Command nord = new Command(CommandType.NORD, "nord");
+        Command nord = new Command(CommandType.NORTH, "nord");
         nord.setAlias(new String[]{"n", "N", "Nord", "NORD"});
         getCommands().add(nord);
         Command inventory = new Command(CommandType.INVENTORY, "inventario");
@@ -118,7 +118,7 @@ public class FireHouseGame extends GameDescription {
             //move
             boolean noroom = false;
             boolean move = false;
-            if (p.getCommand().getType() == CommandType.NORD) {
+            if (p.getCommand().getType() == CommandType.NORTH) {
                 if (getCurrentRoom().getNorth() != null) {
                     setCurrentRoom(getCurrentRoom().getNorth());
                     move = true;

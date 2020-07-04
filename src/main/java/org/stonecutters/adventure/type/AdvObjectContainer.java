@@ -32,6 +32,9 @@ public class AdvObjectContainer extends AdvObject {
     public AdvObjectContainer(int id, String name, String description, Set<String> alias) {
         super(id, name, description, alias);
     }
+    public AdvObjectContainer(int id, String name, String description, String[] alias) {
+        super(id, name, description, alias);
+    }
 
     public List<AdvObject> getList() {
         return list;
