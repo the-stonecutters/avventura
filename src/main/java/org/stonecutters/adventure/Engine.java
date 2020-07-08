@@ -5,7 +5,6 @@
  */
 package org.stonecutters.adventure;
 
-import org.stonecutters.adventure.games.FireHouseGame;
 import org.stonecutters.adventure.games.WeirdCastel.WeirdCastel;
 import org.stonecutters.adventure.parser.Parser;
 import org.stonecutters.adventure.parser.ParserOutput;
@@ -28,7 +27,7 @@ public class Engine {
     public Engine(GameDescription game) {
         this.game = game;
         try {
-            this.game.init();
+            this.game.init(System.out);
         } catch (Exception ex) {
             System.err.println(ex);
         }

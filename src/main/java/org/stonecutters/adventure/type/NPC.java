@@ -23,4 +23,8 @@ public class NPC extends AdvObjectContainer {
         super(id, name, description, alias);
     }
 
+    @Override
+    public boolean isPickupable() {
+        return false;
+    }
 }

@@ -24,6 +24,8 @@ public class Room {
 
     private boolean visible = true;
 
+    private boolean semivisible = true;
+
     private Room south = null;
 
     private Room north = null;
@@ -67,6 +69,10 @@ public class Room {
     public void setVisible(boolean visible) {
         this.visible = visible;
     }
+
+    public boolean isSemiVisible() { return visible || semivisible ;}
+
+    public void setSemiVisible(boolean semivisible) { this.semivisible = semivisible; }
 
     public Room getSouth() {
         return south;
@@ -133,5 +139,7 @@ public class Room {
     public void setLook(String look) {
         this.look = look;
     }
+
+    public int getId() { return id; }
 
 }

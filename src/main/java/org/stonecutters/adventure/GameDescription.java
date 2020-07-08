@@ -47,7 +47,7 @@ public abstract class GameDescription {
         return inventory;
     }
 
-    public abstract void init() throws Exception;
+    public abstract void init(PrintStream out) throws Exception;
 
     public abstract void nextMove(ParserOutput p, PrintStream out);
 
