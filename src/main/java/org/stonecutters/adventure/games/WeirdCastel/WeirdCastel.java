@@ -87,8 +87,6 @@ public class WeirdCastel extends GameDescription {
         public static final int PULSANTE_BLU = 12;
         public static final int PULSANTE_ROSSO = 13;
         public static final int CIBO = 14;
-        public static final int SALVEENEEE = 15;
-        public static final int DEEEMAJOOO = 16;
 
 
     }
@@ -99,7 +97,7 @@ public class WeirdCastel extends GameDescription {
         commands.add(new Command(CommandType.EAST, "est", new String[]{"east", "e", "E", "Est", "East"}));
         commands.add(new Command(CommandType.SOUTH, "sud", new String[]{"south", "s", "S", "Sud", "South"}));
         commands.add(new Command(CommandType.WEST, "ovest", new String[]{"west", "o", "O", "Ovest", "West", "w", "W"}));
-        commands.add(new Command(CommandType.GAG, "avanti", new String[]{"indietro", "destra", "sinistra", "su", "giu", "forward", "backward", "right", "left", "up", "down"}));
+        commands.add(new Command(CommandType.GAG, "avanti", new String[]{"indietro", "destra", "sinistra", "su", "giu", "forward", "backward", "right", "left", "up", "down", "gag"}));
         commands.add(new Command(CommandType.LOOK_AT, "osserva", new String[]{"guarda", "vedi", "trova", "cerca", "descrivi", "esamina", "look"}));
         commands.add(new Command(CommandType.OPEN, "apri", new String[]{"Apri", "open", "Open"}));
         commands.add(new Command(CommandType.CLOSE, "chiudi", new String[]{"Chiudi", "close", "Close"}));
@@ -108,6 +106,8 @@ public class WeirdCastel extends GameDescription {
         commands.add(new Command(CommandType.TALK_TO, "parla", new String[]{"parla con", "parla a", "Parla a", "Parla", "Parla con", "Parla al", "Talk", "Talk to", "Talk with", "talk", "talk to", "talk with"}));
         commands.add(new Command(CommandType.PUSH, "premi", new String[]{"press", "spingi", "push", "schiaccia"}));
         commands.add(new Command(CommandType.HELP, "aiuto", new String[]{"help"}));
+        commands.add(new Command(CommandType.DESTRA, "salvini", new String[]{"salvini", "matteo", "salveenee"}));
+        commands.add(new Command(CommandType.SINISTRA, "dimaio", new String[]{"di maio", "di majonese", "deemajooo", "dimajonese", "majonese", "maionese"}));
 
     }
 
@@ -247,9 +247,6 @@ public class WeirdCastel extends GameDescription {
     public void init(PrintStream out) throws Exception {
         initCommandList();
         initRooms();
-        getInventory().add(new AdvObject(objID.SALVEENEEE, "salvini", "è per una gag ignorami", new String[]{"salvini", "salveenee"}));
-        getInventory().add(new AdvObject(objID.DEEEMAJOOO, "dimaio", "è per una gag ignorami", new String[]{"di maio", "di majonese", "deemajooo", "dimajonese"}));
-
     }
 
     @Override
@@ -286,15 +283,7 @@ public class WeirdCastel extends GameDescription {
                     noroom = true;
                 }
             } else if (p.getCommand().getType() == CommandType.GAG) {
-                if (p.getInvObject() != null && p.getInvObject().getId() == objID.SALVEENEEE) {
-                    //TODO: SCRIVERE GAG
-                    out.println("GAG DI SALVINI");
-                } else if (p.getInvObject() != null && p.getInvObject().getId() == objID.DEEEMAJOOO) {
-                    //TODO: SCRIVERE GAG
-                    out.println("GAG DI DIMAIO");
-                } else {
-                    out.println("Avremmo potuto mettere questo comando come alias ma non ne avevamo voglia quindi abbiamo messo questo easter egg, usa i comandi nord, sud, est, ovest per muoverti");
-                }
+                out.println("Avremmo potuto mettere questo comando come alias ma non ne avevamo voglia quindi abbiamo messo questo easter egg, usa i comandi nord, sud, est, ovest per muoverti");
             } else if (p.getCommand().getType() == CommandType.LOOK_AT) {
                 if (!currentRoom.isVisible()) {
                     out.println("Non c'è abbastanza luce, prova ad accendere qualche candela");
@@ -393,6 +382,10 @@ public class WeirdCastel extends GameDescription {
             } else if (p.getCommand().getType() == CommandType.HELP) {
                 out.println("Prega o leggi il manuale (manuale non incluso nel gioco (╯°□°)╯︵ ┻━┻)");
                 out.println("Potresti dover scrivere qualcosa dopo qualche altra cosa, magari apri, prendi, usa, premi, destra, sinistra, salvini, di maio, non lo so");
+            } else if (p.getCommand().getType() == CommandType.DESTRA) {
+                out.println("Ora che ho un salvini nell'inventario posso finire il gioco? Ah no? Ma allora non serve a niente!");
+            } else if (p.getCommand().getType() == CommandType.SINISTRA) {
+                out.println("Oh un Di Maio nel mio inventario, quando avevo chiesto per un 5 stelle io intendevo un gelato");
             }
 
             if (noroom) {
@@ -445,7 +438,7 @@ public class WeirdCastel extends GameDescription {
                     "Trovi un piccolo oggetto appiccicoso a terra e delle mutande ma non ti servirebbero a niente e li lasci lì.");
         } else if (object.getId() == objID.CASSA) {
             //TODO: SCRIVERE GAG
-            out.println("GAG della cassa");
+            out.println("Apri la cassa e voli a terra dallo spavento quando vedi saltare fuori una testa gigante di Kruncy, il clown ubriacone della TV");
         }
     }
 
