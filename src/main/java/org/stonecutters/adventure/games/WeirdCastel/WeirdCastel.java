@@ -117,13 +117,13 @@ public class WeirdCastel extends GameDescription {
         Room room;
         AdvObject obj;
         //stanze
-        rooms.add(new Room(roomsID.ATRIO, "Atrio", "Stanza molto spaziosa e illuminata, salta subito all’occhio una cassa nell’angolo, c’è un lampadario sfarzoso in cristallo che monopolizza la CPU emmm... la stanza pressoché vuota."));
+        rooms.add(new Room(roomsID.ATRIO, "Atrio", "Stanza molto spaziosa e illuminata, salta subito all'occhio una cassa nell'angolo, c'è un lampadario sfarzoso in cristallo che monopolizza la CPU emmm... la stanza pressoché vuota."));
         rooms.add(new Room(roomsID.SALA_TORTURE, "Sala torture", "Segui dei gradini in pietra che ti portano in una stanza e vedi la figura di un vecchietto stesa a terra proprio in fondo alla stanza, si intravedono anche degli strumenti di tortura medievali, ah sembra doloroso quello!"));
         rooms.add(new Room(roomsID.SALA_PRANZO, "Sala pranzo", "Una sala da pranzo con al centro della stanza una grande tavola in legno di forma ovale, circondata da 10 sedie in legno stranamente leggere, sul tavolo è posto un candelabro a 3 braccia ma contiene solo una candela spenta."));
         rooms.add(new Room(roomsID.CAMERA_LETTO, "Camera da letto", "Camera molto buia si intravede un letto."));
         rooms.add(new Room(roomsID.CUCINE, "Cucine", "Vedi una piccola stanza illuminata con un mobiletto, un angolo cottura, delle pentole e dei piatti, probabilmente si potrebbe cucinare qualcosa di buono."));
-        rooms.add(new Room(roomsID.TORRE, "Torre", "Non riesci a vedere molto tranne che una scala a chioccia che porta verso l’alto e degli scalini in legno che portano verso il basso."));
-        rooms.add(new Room(roomsID.CIMA_TORRE, "Cima della torre", "Una piccola stanza ben illuminata da un lampadario, entrando sulla destra vedi un mappamondo, sulla sinistra una grande libreria con numerosi titoli al suo interno e in fondo c’è una scrivania in legno con sopra dei fogli scritti a mano."));
+        rooms.add(new Room(roomsID.TORRE, "Torre", "Non riesci a vedere molto tranne che una scala a chioccia che porta verso l'alto e degli scalini in legno che portano verso il basso."));
+        rooms.add(new Room(roomsID.CIMA_TORRE, "Cima della torre", "Una piccola stanza ben illuminata da un lampadario, entrando sulla destra vedi un mappamondo, sulla sinistra una grande libreria con numerosi titoli al suo interno e in fondo c'è una scrivania in legno con sopra dei fogli scritti a mano."));
         rooms.add(new Room(roomsID.SOTTERRANEO, "Sotterraneo", "La luce di una candela è troppo debole non illumina abbastanza. "));
         rooms.add(new Room(roomsID.SALA_GENERATORE, "Sala del generatore", "Stanza con un simbolo della corrente sul portone vedi chiaramente sul quadro dei comandi un pulsante rosso e un pulsante blu."));
 
@@ -165,7 +165,7 @@ public class WeirdCastel extends GameDescription {
         room.setSouth(null);
         room.setWest(rooms.get(roomsID.SALA_PRANZO));
         room.getObjects().add(new AdvObject(objID.CANDELA, "Candela",  "Una piccola candela, non fa molta luce ma meglio di niente", new String[]{"candela"}));
-        obj = new AdvObject(objID.ARMADIO, "Armadio", "Ci sono dei rumori, sembra che qualcuno lo tenga chiuso dall’interno, non si apre...", new String[]{"armadio"});
+        obj = new AdvObject(objID.ARMADIO, "Armadio", "Ci sono dei rumori, sembra che qualcuno lo tenga chiuso dall'interno, non si apre...", new String[]{"armadio"});
         obj.setPickupable(false);
         obj.setOpenable(true);
         //obj.setOpen(true);
@@ -433,7 +433,7 @@ public class WeirdCastel extends GameDescription {
     private void fstop(AdvObject object, PrintStream out) {
         if (object.getId() == objID.ARMADIO) {
             object.setOpen(true);
-            out.println("Apri l’armadio una donna e un uomo ti colpiscono e scappano\n" +
+            out.println("Apri l'armadio una donna e un uomo ti colpiscono e scappano\n" +
                     "Probabilmente quella era la regina ma me la ricordavo meno culona.\n" +
                     "Trovi un piccolo oggetto appiccicoso a terra e delle mutande ma non ti servirebbero a niente e li lasci lì.");
         } else if (object.getId() == objID.CASSA) {
@@ -458,7 +458,6 @@ public class WeirdCastel extends GameDescription {
         }
          */
         if (object.getId() == objID.SCOPA) {
-            out.printf("Scopa usata stato %d\n", minisotterraneo);
             if (getCurrentRoom().getId() == roomsID.SOTTERRANEO && minisotterraneo == 2) {
                 out.println("*Hai colpito il ragno in testa con la scopa ed è scoppiato in mille pezzi.*");
                 out.println("Bleah che schifo, ci sono budella di ragno ovunque, per fortuna che che non toccherà a me pulire!");
@@ -473,7 +472,7 @@ public class WeirdCastel extends GameDescription {
             switch (statoSaggio) {
                 case 0:
                     if (!getInventory().contains(new AdvObject(objID.CIBO))) {
-                        out.println("Saggio: Che c’è! Che vuoi? Non ti vendo niente! Ah, non vuoi niente? E allora fammi un favore? Portami da mangiare, dovrebbe esserci qualcosa qua in giro, io non posso proprio alzarmi ma ho una fame colossale. Cough! Cough!");
+                        out.println("Saggio: Che c'è! Che vuoi? Non ti vendo niente! Ah, non vuoi niente? E allora fammi un favore? Portami da mangiare, dovrebbe esserci qualcosa qua in giro, io non posso proprio alzarmi ma ho una fame colossale. Cough! Cough!");
                         if (!getInventory().contains(new AdvObject(objID.ACCENDINO))) {
                             out.println("Saggio: Tieni prendi questo ti potrebbe servire.");
                             getInventory().add(new AdvObject(objID.ACCENDINO, "Magia del fuoco", "Strana magia che produce una piccola fiamma", new String[]{"magia del fuoco", "fuoco", "magia", "accendino"}));
@@ -585,7 +584,7 @@ public class WeirdCastel extends GameDescription {
                     return false;
                 } else if (minisotterraneo == 1) {
                     // inizializza minigioco
-                    out.println("All’improvviso salta fuori un ragno enorme che ti non ti fa passare.\n" +
+                    out.println("All'improvviso salta fuori un ragno enorme che ti non ti fa passare.\n" +
                             "Uh un ragno gigante, sicuramente il creatore di questa avventura testuale non sarà aracnofobico... ah no wait.\n" +
                             "Ah ma ora che ci penso non dovrei rompere la quarta parete, vabbè pazienza.");
                     minisotterraneo = 2;
@@ -615,28 +614,28 @@ public class WeirdCastel extends GameDescription {
                     "Svegliandoti la mattina il sole negli occhi e il vociferare delle persone ti provocano un mal di testa terribile,\n" +
                     "tutte quelle persone accerchiate sono lì che ti osservano ed inizi a realizzare che tutto quello che ti era successo la sera prima era solo a causa di una sbronza.\n" +
                     "A piano a piano ti tornano in mente le cose successe e capisci cosa è davvero accaduto:\n" +
-                    "Il castello in cui ti trovavi era solo un’attrazione del parco di Dobbolino, il vecchio con cui hai parlato era un tossico,\n" +
+                    "Il castello in cui ti trovavi era solo un'attrazione del parco di Dobbolino, il vecchio con cui hai parlato era un tossico,\n" +
                     "i due che erano scappati via una coppia di adolescenti andati lì per fare cose e ti torna in mente un flashback,\n" +
-                    "quel povero innocente ragnetto aveva solo costruito una ragnatela sulla porta del generatore e tu l’hai ridotto in poltiglia con il manico di una scopa,\n" +
+                    "quel povero innocente ragnetto aveva solo costruito una ragnatela sulla porta del generatore e tu l'hai ridotto in poltiglia con il manico di una scopa,\n" +
                     "poi hai attivato il ponte finto che ti ha fatto uscire.\n" +
                     "Mentre stai lì a fantasticare arrivano due uomini in divisa, due guardie del parco divertimenti che ti guardano con uno sguardo severo e dicono:\n" +
                     "\"Il solito ubriaco che fa quello che vuole, ehi tu adesso ti arrestiamo per violazione di proprietà privata\".\n" +
-                    "E ti rendi conto che hai toccato il fondo ma come ti ha insegnato tuo nonno quando tocchi il fondo è il momento di aprire un’altra bottiglia di birra.\n" +
+                    "E ti rendi conto che hai toccato il fondo ma come ti ha insegnato tuo nonno quando tocchi il fondo è il momento di aprire un'altra bottiglia di birra.\n" +
                     "(ATTENZIONE QUESTA STORIA POTREBBE REALMENTE ESSERE SUCCESSA A MIO CUGINO)");
         } else {
             out.println("Ti dirigi verso il ponte levatoio ma subito dopo averlo superato perdi i sensi e ti risvegli il giorno dopo.\n" +
                     "Svegliandoti la mattina il sole negli occhi e il vociferare delle persone ti provocano un mal di testa terribile,\n" +
                     "tutte quelle persone accerchiate sono lì che ti osservano ed inizi a realizzare che tutto quello che ti era successo la sera prima era solo a causa di una sbronza.\n" +
                     "A piano a piano ti tornano in mente le cose successe e capisci cosa è davvero accaduto:\n" +
-                    "Il castello in cui ti trovavi era solo un’attrazione del parco di Dobbolino, il vecchio con cui hai parlato era un tossico,\n" +
-                    "ti torna in mente un flashback, quel povero innocente ragnetto aveva solo costruito una ragnatela sulla porta del generatore e tu l’hai ridotto in poltiglia con il manico di una scopa,\n" +
+                    "Il castello in cui ti trovavi era solo un'attrazione del parco di Dobbolino, il vecchio con cui hai parlato era un tossico,\n" +
+                    "ti torna in mente un flashback, quel povero innocente ragnetto aveva solo costruito una ragnatela sulla porta del generatore e tu l'hai ridotto in poltiglia con il manico di una scopa,\n" +
                     "poi hai attivato il ponte finto che ti ha fatto uscire.\n" +
-                    "(Solo anni dopo si verrà a scoprire che nell’armadio c’era una coppia di adolescenti che per paura di essere scoperti si era chiusa dentro ed erano rimasti bloccati lì,\n" +
-                    "si ritroveranno poi solo i famosi scheletri nell’armadio!)\n" +
+                    "(Solo anni dopo si verrà a scoprire che nell'armadio c'era una coppia di adolescenti che per paura di essere scoperti si era chiusa dentro ed erano rimasti bloccati lì,\n" +
+                    "si ritroveranno poi solo i famosi scheletri nell'armadio!)\n" +
                     "Mentre stai lì a fantasticare arrivano due uomini in divisa, due guardie del parco divertimenti che ti guardano con uno sguardo severo e dicono:\n" +
                     "\n" +
                     "\"Il solito ubriaco che fa quello che vuole, ehi tu adesso ti arrestiamo per violazione di proprietà privata\".\n" +
-                    "E ti rendi conto che hai toccato il fondo ma come ti ha insegnato tuo nonno quando tocchi il fondo è il momento di aprire un’altra bottiglia di birra.\n" +
+                    "E ti rendi conto che hai toccato il fondo ma come ti ha insegnato tuo nonno quando tocchi il fondo è il momento di aprire un'altra bottiglia di birra.\n" +
                     "(ATTENZIONE QUESTA STORIA POTREBBE REALMENTE ESSERE SUCCESSA A MIO CUGINO)");
         }
         System.exit(0);
@@ -651,9 +650,9 @@ public class WeirdCastel extends GameDescription {
                     "stranamente ci sono anche dei giornalisti.\n" +
                     "Inizi a realizzare che tutto quello che ti era successo la sera prima era solo a causa di una sbronza.\n" +
                     "A piano a piano ti tornano in mente le cose successe e capisci cosa è davvero accaduto:\n" +
-                    "Il castello in cui ti trovavi era solo un’attrazione del parco di Dobbolino, il vecchio con cui hai parlato era un tossico,\n" +
+                    "Il castello in cui ti trovavi era solo un'attrazione del parco di Dobbolino, il vecchio con cui hai parlato era un tossico,\n" +
                     "i due che erano scappati via una coppia di adolescenti andati lì per fare cose e ti torna in mente un flashback,\n" +
-                    "quel povero innocente ragnetto aveva solo costruito una ragnatela sulla porta del generatore e tu l’hai ridotto in poltiglia con il manico di una scopa,\n" +
+                    "quel povero innocente ragnetto aveva solo costruito una ragnatela sulla porta del generatore e tu l'hai ridotto in poltiglia con il manico di una scopa,\n" +
                     "poi hai attivato il ponte finto che ti ha fatto uscire.\n" +
                     "Mentre stai lì a fantasticare arrivano tanti uomini in divisa, sembrerebbero agenti federali, ti guardano con uno sguardo severo e dicono:\n" +
                     "\"Signore, è in arresto per violazione di proprietà privata e terrorismo ai danni di Dusneyland Paris\".\n" +
@@ -664,11 +663,11 @@ public class WeirdCastel extends GameDescription {
                     "stranamente ci sono anche dei giornalisti.\n" +
                     "Inizi a realizzare che tutto quello che ti era successo la sera prima era solo a causa di una sbronza.\n" +
                     "A piano a piano ti tornano in mente le cose successe e capisci cosa è davvero accaduto:\n" +
-                    "Il castello in cui ti trovavi era solo un’attrazione del parco di Dobbolino, il vecchio con cui hai parlato era un tossico,ti torna in mente un flashback,\n" +
-                    "quel povero innocente ragnetto aveva solo costruito una ragnatela sulla porta del generatore e tu l’hai ridotto in poltiglia con il manico di una scopa,\n" +
+                    "Il castello in cui ti trovavi era solo un'attrazione del parco di Dobbolino, il vecchio con cui hai parlato era un tossico,ti torna in mente un flashback,\n" +
+                    "quel povero innocente ragnetto aveva solo costruito una ragnatela sulla porta del generatore e tu l'hai ridotto in poltiglia con il manico di una scopa,\n" +
                     "poi hai attivato il ponte finto che ti ha fatto uscire.\n" +
-                    "(Solo anni dopo si verrà a scoprire che nell’armadio c’era una coppia di adolescenti che per paura di essere scoperti si era chiusa dentro ed erano rimasti bloccati lì,\n" +
-                    "si ritroveranno poi solo i famosi scheletri nell’armadio!)\n" +
+                    "(Solo anni dopo si verrà a scoprire che nell'armadio c'era una coppia di adolescenti che per paura di essere scoperti si era chiusa dentro ed erano rimasti bloccati lì,\n" +
+                    "si ritroveranno poi solo i famosi scheletri nell'armadio!)\n" +
                     "Mentre stai lì a fantasticare arrivano tanti uomini in divisa, sembrerebbero agenti federali, ti guardano con uno sguardo severo e dicono:\n" +
                     "\"Signore, è in arresto per violazione di proprietà privata e terrorismo ai danni di Dusneyland Paris\".\n" +
                     "(ATTENZIONE QUESTA STORIA POTREBBE REALMENTE ESSERE SUCCESSA A MIO CUGINO)\n");
