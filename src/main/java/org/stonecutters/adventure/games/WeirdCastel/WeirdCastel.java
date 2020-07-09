@@ -69,6 +69,7 @@ public class WeirdCastel extends GameDescription {
         public static final int CIMA_TORRE = 6;
         public static final int SOTTERRANEO = 7;
         public static final int SALA_GENERATORE = 8;
+        public static final int PONTE = 9;
     }
 
     private class objID {
@@ -126,13 +127,14 @@ public class WeirdCastel extends GameDescription {
         rooms.add(new Room(roomsID.CIMA_TORRE, "Cima della torre", "Una piccola stanza ben illuminata da un lampadario, entrando sulla destra vedi un mappamondo, sulla sinistra una grande libreria con numerosi titoli al suo interno e in fondo c'è una scrivania in legno con sopra dei fogli scritti a mano."));
         rooms.add(new Room(roomsID.SOTTERRANEO, "Sotterraneo", "La luce di una candela è troppo debole non illumina abbastanza. "));
         rooms.add(new Room(roomsID.SALA_GENERATORE, "Sala del generatore", "Stanza con un simbolo della corrente sul portone vedi chiaramente sul quadro dei comandi un pulsante rosso e un pulsante blu."));
+        rooms.add(new Room(roomsID.PONTE, "Ponte levatoio", "Tanto qui non ci andrai mai"));
 
         //connessioni
         //atrio
         room = rooms.get(roomsID.ATRIO);
         room.setNorth(rooms.get(roomsID.SALA_PRANZO));
         room.setEast(rooms.get(roomsID.TORRE));
-        room.setSouth(null);
+        room.setSouth(rooms.get(roomsID.PONTE));
         room.setWest(rooms.get(roomsID.SALA_TORTURE));
         obj = new AdvObject(0, "Cassa", "potresti metterci qualcosa dentro", new String[]{"cassa", "box"});
         obj.setOpenable(true);
@@ -241,6 +243,14 @@ public class WeirdCastel extends GameDescription {
         room.getObjects().add(obj);
         room.setVisible(true);
 
+        //ponte
+        room = rooms.get(roomsID.PONTE);
+        room.setNorth(null);
+        room.setEast(null);
+        room.setSouth(null);
+        room.setWest(null);
+
+
         setCurrentRoom(rooms.get(roomsID.ATRIO));
     }
 
@@ -308,12 +318,20 @@ public class WeirdCastel extends GameDescription {
                     }
                 }
             } else if (p.getCommand().getType() == CommandType.PICK_UP) {
+                if (!currentRoom.isVisible()) {
+                    out.println("Non vedi niente, cosa vuoi prendere?");
+                    return;
+                }
                 if (p.getObject() != null) {
                     pijatelo(p.getObject(), out);
                   } else {
                     out.println("Non ho capito cosa devo prendere.");
                 }
             } else if (p.getCommand().getType() == CommandType.OPEN) {
+                if (!currentRoom.isVisible()) {
+                    out.println("Non vedi niente, cosa vuoi aprire?");
+                    return;
+                }
                 if (p.getObject() == null && p.getInvObject() == null) {
                     out.println("Non ho capito cosa devo aprire");
                 } else {
@@ -453,7 +471,7 @@ public class WeirdCastel extends GameDescription {
         if (object.getId() == objID.ARMADIO) {
             object.setOpen(true);
             out.println("Apri l'armadio una donna e un uomo ti colpiscono e scappano\n" +
-                    "Probabilmente quella era la regina ma me la ricordavo meno culona.\n" +
+                    "Probabilmente quella era la regina ma me la ricordavo col fondoschiena meno grasso.\n" +
                     "Trovi un piccolo oggetto appiccicoso a terra e delle mutande ma non ti servirebbero a niente e li lasci lì.");
         } else if (object.getId() == objID.CASSA) {
             //TODO: SCRIVERE GAG
@@ -597,6 +615,9 @@ public class WeirdCastel extends GameDescription {
                     return false;
                 }
                 break;
+            case roomsID.PONTE:
+                out.println("Il ponte ti blocca la strada");
+                return false;
             case roomsID.SALA_GENERATORE:
                 if (minisotterraneo == 0) {
                     out.println("Qualcosa la blocca ma non riesci a vedere cosa, se ti avvicini senti degli strani rumori");
