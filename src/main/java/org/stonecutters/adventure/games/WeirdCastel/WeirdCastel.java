@@ -218,7 +218,7 @@ public class WeirdCastel extends GameDescription {
         room.setEast(rooms.get(roomsID.SALA_GENERATORE));
         room.setSouth(null);
         room.setWest(null);
-        obj = new AdvObject(objID.SCOPA, "Scopa", "", new String[]{"scopa"});
+        obj = new AdvObject(objID.SCOPA, "Scopa", "Potresti schiacciarci qualche aracnide", new String[]{"scopa"});
         obj.setUsable(true);
         room.getObjects().add(obj);
         room.setVisible(false);
