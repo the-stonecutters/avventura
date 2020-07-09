@@ -315,10 +315,12 @@ public class WeirdCastel extends GameDescription {
                         if (p.getObject().isOpen()) {
                             out.println("È già aperto");
                         } else {
-                            if (p.getObject().isOpenable()) {
+                            if (p.getObject().isOpenable() && !p.getObject().isOpen()) {
                                 if (p.getObject() instanceof AdvObjectContainer) {
+                                    chiudiOggetto();
                                     out.println("Hai aperto: " + p.getObject().getName());
                                     oggettoAperto = (AdvObjectContainer) p.getObject();
+                                    oggettoAperto.setOpen(true);
                                     if (!oggettoAperto.getList().isEmpty()) {
                                         out.print(oggettoAperto.getName() + " contiene:");
                                         Iterator<AdvObject> it = oggettoAperto.getList().iterator();
@@ -381,7 +383,7 @@ public class WeirdCastel extends GameDescription {
                 }
             } else if (p.getCommand().getType() == CommandType.HELP) {
                 out.println("Prega o leggi il manuale (manuale non incluso nel gioco (╯°□°)╯︵ ┻━┻)");
-                out.println("Potresti dover scrivere qualcosa dopo qualche altra cosa, magari apri, prendi, usa, premi, destra, sinistra, salvini, di maio, non lo so");
+                out.println("Potresti dover scrivere qualcosa dopo qualche altra cosa, magari guarda, apri, prendi, usa, premi, destra, sinistra, salvini, di maio, non lo so");
             } else if (p.getCommand().getType() == CommandType.DESTRA) {
                 out.println("Ora che ho un salvini nell'inventario posso finire il gioco? Ah no? Ma allora non serve a niente!");
             } else if (p.getCommand().getType() == CommandType.SINISTRA) {
@@ -404,12 +406,15 @@ public class WeirdCastel extends GameDescription {
     }
 
     private void chiudiOggetto() {
-        if (oggettoAperto != null && !oggettoAperto.getList().isEmpty()) {
-            Iterator<AdvObject> it = oggettoAperto.getList().iterator();
-            while (it.hasNext()) {
-                AdvObject next = it.next();
-                if (!getCurrentRoom().getObjects().remove(next)) it.remove();
+        if (oggettoAperto != null) {
+            if (!oggettoAperto.getList().isEmpty()) {
+                Iterator<AdvObject> it = oggettoAperto.getList().iterator();
+                while (it.hasNext()) {
+                    AdvObject next = it.next();
+                    if (!getCurrentRoom().getObjects().remove(next)) it.remove();
+                }
             }
+            oggettoAperto.setOpen(false);
         }
         oggettoAperto = null;
     }
