@@ -121,8 +121,8 @@ public class WeirdCastel extends GameDescription {
         rooms.add(new Room(roomsID.SALA_TORTURE, "Sala torture", "Segui dei gradini in pietra che ti portano in una stanza e vedi la figura di un vecchietto stesa a terra proprio in fondo alla stanza, si intravedono anche degli strumenti di tortura medievali, ah sembra doloroso quello!"));
         rooms.add(new Room(roomsID.SALA_PRANZO, "Sala pranzo", "Una sala da pranzo con al centro della stanza una grande tavola in legno di forma ovale, circondata da 10 sedie in legno stranamente leggere, sul tavolo è posto un candelabro a 3 braccia ma contiene solo una candela spenta."));
         rooms.add(new Room(roomsID.CAMERA_LETTO, "Camera da letto", "Camera molto buia si intravede un letto."));
-        rooms.add(new Room(roomsID.CUCINE, "Cucine", "Vedi una piccola stanza illuminata con un mobiletto, un angolo cottura, delle pentole e dei piatti, probabilmente si potrebbe cucinare qualcosa di buono."));
-        rooms.add(new Room(roomsID.TORRE, "Torre", "Non riesci a vedere molto tranne che una scala a chioccia che porta verso l'alto e degli scalini in legno che portano verso il basso."));
+        rooms.add(new Room(roomsID.CUCINE, "Cucine", "Vedi una piccola stanza con un mobiletto, un angolo cottura, delle pentole e dei piatti, probabilmente si potrebbe cucinare qualcosa di buono."));
+        rooms.add(new Room(roomsID.TORRE, "Torre", "Non riesci a vedere molto tranne che una scala a chioccia che porta verso l'alto e degli scalini in legno che portano verso il basso. Avere un po' di luce in più probabilmente ti aiuterebbe"));
         rooms.add(new Room(roomsID.CIMA_TORRE, "Cima della torre", "Una piccola stanza ben illuminata da un lampadario, entrando sulla destra vedi un mappamondo, sulla sinistra una grande libreria con numerosi titoli al suo interno e in fondo c'è una scrivania in legno con sopra dei fogli scritti a mano."));
         rooms.add(new Room(roomsID.SOTTERRANEO, "Sotterraneo", "La luce di una candela è troppo debole non illumina abbastanza. "));
         rooms.add(new Room(roomsID.SALA_GENERATORE, "Sala del generatore", "Stanza con un simbolo della corrente sul portone vedi chiaramente sul quadro dei comandi un pulsante rosso e un pulsante blu."));
@@ -180,6 +180,7 @@ public class WeirdCastel extends GameDescription {
         room.setWest(null);
         room.getObjects().add(new AdvObject(objID.CIBO, "Cibo", "Cibo probabilmente commestibile", new String[]{"piatto", "cibo", "Piatto"}));
         room.setVisible(false);
+        room.setSemiVisible(false);
 
         //torre
         room = rooms.get(roomsID.TORRE);
@@ -247,6 +248,11 @@ public class WeirdCastel extends GameDescription {
     public void init(PrintStream out) throws Exception {
         initCommandList();
         initRooms();
+        out.println("Ti risvegli un uno strano castello con la testa dolorante e la vista appannata,\n" +
+                "non hai la minima idea di come tu ci sia finito lì dentro,\n" +
+                "sai solo che a causa del grande mal di stomaco che hai in questo momento vorresti provare a scappare via,\n" +
+                "tuttavia il ponte alle tue spalle è chiuso e ti impedisce di uscire,\n" +
+                "ti toccherà esplorare il castello per trovare un modo per aprirlo");
     }
 
     @Override
@@ -357,6 +363,10 @@ public class WeirdCastel extends GameDescription {
                     out.println("Non c'è niente da chiudere qui");
                 }
             } else if (p.getCommand().getType() == CommandType.TALK_TO) {
+                if (!currentRoom.isVisible()) {
+                    out.println("Non vedi niente, cosa vuoi prendere?");
+                    return;
+                }
                 if (p.getObject() == null) {
                     out.println("Non ho capito con chi devo parlare");
                 } else if (currentRoom.getObjects().contains(p.getObject())) {
@@ -365,6 +375,10 @@ public class WeirdCastel extends GameDescription {
                     out.println("Non c'è nessuno con cui parlare");
                 }
             } else if (p.getCommand().getType() == CommandType.USE) {
+                if (!currentRoom.isVisible()) {
+                    out.println("Non vedi niente, cosa vuoi usare?");
+                    return;
+                }
                 if (p.getInvObject() == null) {
                     out.println("Non hai questo oggetto");
                 } else if (!p.getInvObject().isUsable()) {
@@ -383,7 +397,7 @@ public class WeirdCastel extends GameDescription {
                 }
             } else if (p.getCommand().getType() == CommandType.HELP) {
                 out.println("Prega o leggi il manuale (manuale non incluso nel gioco (╯°□°)╯︵ ┻━┻)");
-                out.println("Potresti dover scrivere qualcosa dopo qualche altra cosa, magari guarda, apri, prendi, usa, premi, destra, sinistra, salvini, di maio, non lo so");
+                out.println("Potresti dover scrivere qualcosa dopo qualche altra cosa, magari guarda, apri, prendi, usa, parla, premi, destra, sinistra, salvini, di maio, non lo so");
             } else if (p.getCommand().getType() == CommandType.DESTRA) {
                 out.println("Ora che ho un salvini nell'inventario posso finire il gioco? Ah no? Ma allora non serve a niente!");
             } else if (p.getCommand().getType() == CommandType.SINISTRA) {
@@ -556,7 +570,7 @@ public class WeirdCastel extends GameDescription {
                 }
                 if (count == 3) {
                     room.setDescription("Un sotterraneo spazioso stranamente pieno di scatoloni attrezzi per pulire e una scopa, in fondo un cancello con un segnale sopra anticipa uno strano portone.\n" +
-                            "Si sentono strani suoni e un cattivo odore, strano! Il barbone è di sopra.");
+                            "Si sentono strani suoni e un cattivo odore. Strano, il barbone è di sopra.");
                     if (minisotterraneo == 0) minisotterraneo = 1;
                     room.setVisible(true);
                 }
@@ -596,7 +610,7 @@ public class WeirdCastel extends GameDescription {
                     return false;
                 } else if (minisotterraneo == 2) {
                     // minigioco in corso
-                    out.println("Inizi a colpire con la mazza della scopa il ragno gigante finché non stramazza al suolo");
+                    out.println("Prova a colpire con la mazza della scopa il ragno gigante finché non stramazza al suolo");
                     return false;
                 }
         }
