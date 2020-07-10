@@ -142,6 +142,7 @@ public class WeirdCastel extends GameDescription {
         room.setWest(rooms.get(roomsID.SALA_TORTURE));
         obj = new AdvObject(0, "Cassa", "potresti metterci qualcosa dentro", new String[]{"cassa", "box"});
         obj.setOpenable(true);
+        obj.setPickupable(false);
         room.getObjects().add(obj);
         room.setVisible(true);
 
@@ -412,7 +413,6 @@ public class WeirdCastel extends GameDescription {
                 if (p.getObject() == null) {
                     out.println("Non ho capito cosa devo premere");
                 } else if (p.getObject().isPushable()) {
-                    //TODO: trovare un nome più stupido
                     premi(p.getObject(), out);
                 } else {
                     out.println("Non c'è niente da premere qui.");
@@ -483,20 +483,6 @@ public class WeirdCastel extends GameDescription {
     }
 
     private void UnitedStatesofAmerica(AdvObject object, PrintStream out) {
-        /*
-        if (object.getId() == objID.ACCENDINO) {
-            if (getCurrentRoom().getId() == roomsID.CUCINE) {
-                if (getCurrentRoom().getObjects().contains(new AdvObject(objID.CANDELA))) {
-                    out.println("Dalla piccola fiamma riesci a vedere una candela, la prendi e la accendi");
-                    getInventory().add(new AdvObject(objID.CANDELA, "Candela", "Una piccola candela, non fa molta luce ma meglio di niente"));
-                    getCurrentRoom().getObjects().remove(new AdvObject(objID.CANDELA));
-                }
-            } else {
-                out.println("Una piccola fiamma compare fra le tue mani, non illumina molto...");
-                out.println("Ti stai bruciando la mano, la metti via");
-            }
-        }
-         */
         if (object.getId() == objID.SCOPA) {
             if (getCurrentRoom().getId() == roomsID.SOTTERRANEO && minisotterraneo == 2) {
                 out.println("*Hai colpito il ragno in testa con la scopa ed è scoppiato in mille pezzi.*");
