@@ -23,19 +23,19 @@ ti toccherà esplorare il castello per trovare un modo per aprirlo.
 <summary>SPOILER: Come completare il gioco</summary>
 Per completare il gioco è necessario accedere alla sala del generatore per calare il ponte levatoio premendo il pulsante blu o il pulsante rosso
 <br>
-La sala del generatore si trova ad est del sotterraneo ed è necessario completare il minigioco del *ragno gigante* per potervi accedere
+La sala del generatore si trova ad est del sotterraneo ed è necessario completare il minigioco del <i>ragno gigante</i> per potervi accedere
 <br>
 Il sotterraneo è molto buio e necessita di 3 candele per poter accedere al minigioco del ragno gigante
 <br>
 La parte principale del gameplay consiste nel trovare le 3 candele necessarie ad accedere al sotterraneo
 <br>
-Per poter prendere le candele bisogna avere la *magia del fuoco* che si ottiene parlando con il *vecchio saggio* nella sala torture
+Per poter prendere le candele bisogna avere la <i>magia del fuoco</i> che si ottiene parlando con il <i>vecchio saggio</i> nella sala torture
 <br>
 La sala torture è chiusa a chiave, la chiave si trova in un libro in cima alla torre
 <br>
-Dando del cibo al *vecchio saggio* è possibile ottenere degli indizi per completare il gioco
+Dando del cibo al <i>vecchio saggio</i> è possibile ottenere degli indizi per completare il gioco
 <br>
-Le candele si trovano in _sala da pranzo_, _camera da letto_ e _torre_
+Le candele si trovano in <i>sala da pranzo</i>, <i>camera da letto</i> e <i>torre</i>
 <br>
 Ci sono in tutto 4 finali
 </details>
