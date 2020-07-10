@@ -2,6 +2,10 @@ package org.stonecutters.adventure.type;
 
 import java.util.Set;
 
+
+/**
+ * @author giuseppe marino
+ */
 public class NPC extends AdvObjectContainer {
     public NPC(int id) {
         super(id);

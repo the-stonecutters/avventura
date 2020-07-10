@@ -13,6 +13,7 @@ import java.util.*;
 /**
  *
  * @author pierpaolo
+ * @author giuseppe
  */
 public class Parser {
     private ArrayList<String> tokens;

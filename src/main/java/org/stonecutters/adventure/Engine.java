@@ -52,12 +52,4 @@ public class Engine {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Engine engine = new Engine(new WeirdCastel());
-        engine.run();
-    }
-
 }

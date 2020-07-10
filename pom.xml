@@ -25,7 +25,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>src/</classpathPrefix>
-                            <mainClass>org.stonecutters.adventure.Engine</mainClass>
+                            <mainClass>org.stonecutters.adventure.games.WeirdCastel.WeirdCastel</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

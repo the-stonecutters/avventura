@@ -1,5 +1,6 @@
 package org.stonecutters.adventure.games.WeirdCastel;
 
+import org.stonecutters.adventure.Engine;
 import org.stonecutters.adventure.GameDescription;
 import org.stonecutters.adventure.parser.ParserOutput;
 import org.stonecutters.adventure.type.*;
@@ -50,8 +51,11 @@ import java.util.List;
  */
 
 
-
-
+/**
+ * @author giuseppe marino
+ * @author alessandro mauro
+ * @author cosimo straniero
+ */
 
 public class WeirdCastel extends GameDescription {
     //vecchia maniera facile e veloce
@@ -474,7 +478,6 @@ public class WeirdCastel extends GameDescription {
                     "Probabilmente quella era la regina ma me la ricordavo col fondoschiena meno grasso.\n" +
                     "Trovi un piccolo oggetto appiccicoso a terra e delle mutande ma non ti servirebbero a niente e li lasci lì.");
         } else if (object.getId() == objID.CASSA) {
-            //TODO: SCRIVERE GAG
             out.println("Apri la cassa e voli a terra dallo spavento quando vedi saltare fuori una testa gigante di Kruncy, il clown ubriacone della TV");
         }
     }
@@ -714,5 +717,13 @@ public class WeirdCastel extends GameDescription {
         }
 
         System.exit(0);
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Engine engine = new Engine(new WeirdCastel());
+        engine.run();
     }
 }
